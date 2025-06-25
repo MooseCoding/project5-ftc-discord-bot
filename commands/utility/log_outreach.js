@@ -1,5 +1,5 @@
 const {SlashCommandBuilder} = require('discord.js');
-const {insertOutreach} = require('../../database/handlers/insert_outreach.js');
+const {insertOutreach} = require('../../outreach/database/handlers/insert_outreach.js');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -83,11 +83,11 @@ module.exports = {
             if (user) members.push(user.id);
         }
 
-        for (member in members) {
-            insertOutreach(interaction.options.getString('event'), interaction.options.getInteger('month'), interaction.options.getInteger('day'), interaction.options.getInteger('hours-per-member'), member, teamId, interaction.options.getString('description'));
+        for (const member of members) {
+            await insertOutreach(interaction.options.getString('event'), interaction.options.getInteger('month'), interaction.options.getInteger('day'), interaction.options.getInteger('hours-per-member'), member, teamId, interaction.options.getString('description'));
         }
 
-        interaction.reply(`Logged hours for ${interaction.options.getString('event')}!`)
+        await interaction.reply(`Logged hours for ${interaction.options.getString('event')}!`)
     },
 };
 

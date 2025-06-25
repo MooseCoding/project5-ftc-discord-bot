@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "init": "node outreach/database/db.js && node links/database/db.js && node deploy-commands.js",
+    "run": "node index.js",
+    "full": "node outreach/database/db.js && node links/database/db.js && node deploy-commands.js && node index.js"
   },
   "author": "",
   "license": "ISC",

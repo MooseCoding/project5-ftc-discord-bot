@@ -1,5 +1,5 @@
 const {SlashCommandBuilder} = require('discord.js');
-const {get_total_hours} = require('../../database/handlers/fetch_outreach.js');
+const {get_total_hours} = require('../../outreach/database/handlers/fetch_outreach.js');
 
 module.exports = {
     data: new SlashCommandBuilder()

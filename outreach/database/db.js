@@ -9,8 +9,8 @@ if (!fs.existsSync(dataDir)) {
 
 const dbPath = path.join(dataDir, 'outreach.db');
 const db = new sqlite3.Database(dbPath, (err) => {
-  if (err) return console.error('DB bad:', err.message);
-  console.log('DB good');
+  if (err) return console.error('Outreach DB bad:', err.message);
+  console.log('Outreach DB good');
 });
 
 db.serialize(() => {
