@@ -1,5 +1,5 @@
 const {get_user_hours} = require('../../outreach/database/handlers/fetch_outreach.js');
-const {SlashCommandBuilder, PermissionsBitField} = require('discord.js');
+const {SlashCommandBuilder, MessageFlags} = require('discord.js');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -10,6 +10,6 @@ module.exports = {
         const member = interaction.user.id; 
         const hours = await get_user_hours(member, team_id); 
 
-        await interaction.reply({content:`${member.username} has ${hours} hours`, flags: MessageFlags.Ephemeral})
+        await interaction.reply(`You have ${hours} hours`)
     },
 };

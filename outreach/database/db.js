@@ -22,7 +22,9 @@ db.serialize(() => {
       hours REAL NOT NULL,
       member_id TEXT NOT NULL,
       team_id TEXT NOT NULL,
-      description TEXT
+      description TEXT,
+      image1 TEXT,
+      image2 TEXT
     );
   `);
 });

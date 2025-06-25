@@ -14,7 +14,7 @@ module.exports = {
     async execute(interaction) {
         const team_id = interaction.guild.id;
         const member = interaction.options.getUser('member');
-        const hours = await get_user_hours(member, team_id); 
+        const hours = await get_user_hours(member.id, team_id); 
 
         await interaction.reply(`${member.username} has ${hours} hours`)
 

@@ -57,6 +57,8 @@ module.exports = {
                     output+=`\n`; 
                 }
 
+                output+=`\n`;
+
                 if(output.length > 2000) {
                     output = output.slice(0, 1990) + '\n... (truncated)';
                 }
