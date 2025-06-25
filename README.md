@@ -4,4 +4,4 @@ Things I'm working on
 
 - [x] Outreach hours logging
 - [ ] Outreach planning & sign-ups
-- [ ] Common links
+- [x] Common links
