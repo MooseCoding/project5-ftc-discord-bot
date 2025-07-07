@@ -29,4 +29,26 @@ db.serialize(() => {
   `);
 });
 
-module.exports = db;
+const eventsPath = path.join(dataDir, 'events.db');
+const events_db = new sqlite3.Database(dbPath, (err) => {
+  if (err) return console.error('Events DB bad:', err.message);
+  console.log('Events DB good');
+});
+
+events_db.serialize(() => {
+  events_db.run(`
+    CREATE TABLE IF NOT EXISTS events (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      event TEXT NOT NULL,
+      date TEXT NOT NULL,
+      start_time TEXT NOT NULL,
+      end_time TEXT NOT NULL,
+      team_id TEXT NOT NULL,
+      required_amount REAL NOT NULL,
+      description TEXT,
+      members_going_list TEXT,
+      members_not_list TEXT
+    )`)
+})
+
+module.exports = {db, events_db};

@@ -22,9 +22,11 @@ module.exports = {
                         grouped[key] = {
                             event: row.event,
                             date: row.date,
-                            desc: row.desc,
+                            desc: row.description,
                             members: [],
-                            totalHours:0
+                            totalHours:0,
+                            image1: row.image1,
+                            image2: row.image2
                         };
                     }
 
@@ -47,14 +49,14 @@ module.exports = {
                     });
 
                     output += `Event: ${event.event} \n`;
-                    output += `Date: ${formattedDate} | Total Hours: ${event.totalHours} | Desc: ${event?.desc ?? 'No description'}\n`;
+                    output += `Date: ${formattedDate} | Total Hours: ${event.totalHours} | Desc: ${event?.desc ?? 'No description'} | Images: [image1](${event.image1}) [image2](${event.image2})'\n`;
                     output += `Members: `;
 
                     for (const m of event.members) {
                         const user = await interaction.client.users.fetch(m.id);
                         output += `${user.username}, `
                     }
-                    output+=`\n`; 
+                    output+=`\n\n`; 
                 }
 
                 output+=`\n`;

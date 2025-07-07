@@ -73,6 +73,16 @@ module.exports = {
             option.setName('description')
             .setDescription('Brief description of the event')
             .setRequired(false)
+        )
+        .addAttachmentOption(option => 
+            option.setName('image1')
+            .setDescription('The first from the event')
+            .setRequired(false)
+        )
+        .addAttachmentOption(option =>
+            option.setName('image2')
+            .setDescription('The second image from the event')
+            .setRequired(false)
         ),
     async execute(interaction) {
         const members = [];
@@ -83,8 +93,16 @@ module.exports = {
             if (user) members.push(user.id);
         }
 
+        const event = interaction.options.getString('event');
+        const month = interaction.options.getInteger('month');
+        const day = interaction.options.getInteger('day'); 
+        const hours = interaction.options.getInteger('hours-per-member');
+        const desc = interaction.options.getString('description');
+        const image1 = interaction.options.getAttachment('image1')?.url ?? null;
+        const image2 = interaction.options.getAttachment('image2')?.url ?? null;
+
         for (const member of members) {
-            await insertOutreach(interaction.options.getString('event'), interaction.options.getInteger('month'), interaction.options.getInteger('day'), interaction.options.getInteger('hours-per-member'), member, teamId, interaction.options.getString('description'));
+            await insertOutreach(event, month, day, hours, member, teamId, desc, image1, image2);
         }
 
         await interaction.reply(`Logged hours for ${interaction.options.getString('event')}!`)

@@ -1,12 +1,12 @@
 const db = require('../db');
 
-async function insertOutreach(event, month, day, hours, member_id, team_id, description) {
+async function insertOutreach(event, month, day, hours, member_id, team_id, description, image1, image2) {
   let date = new Date(`${new Date().getFullYear()}-${month}-${day}`); 
     
   return new Promise((resolve, reject) => {
     db.run(
-      `INSERT INTO outreach (event, date, hours, member_id, team_id, description) VALUES (?, ?, ?, ?, ?, ?)`,
-      [event, date, hours, member_id, team_id, description],
+      `INSERT INTO outreach (event, date, hours, member_id, team_id, description, image1, image2) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+      [event, date, hours, member_id, team_id, description, image1, image2],
       function (err) {
         if (err) reject(err);
         else resolve(this.lastID);

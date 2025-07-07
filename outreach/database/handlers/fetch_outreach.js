@@ -43,7 +43,7 @@ async function get_total_hours(team_id) {
 async function get_all_events(team_id) {
     return new Promise((resolve, reject) => {
         const query = `
-            SELECT event, date, hours, member_id, description
+            SELECT event, date, hours, member_id, description, image1, image2
             FROM outreach
             WHERE team_id = ?
             ORDER BY date DESC
